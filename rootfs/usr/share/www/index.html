@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VionetaOS observer</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body id="particles">
+      <div class="container">
+        <h1>VionetaOS observer</h1>
+        <table>
+          <tr>
+            <td>
+              Supervisor:
+            </td>
+            <td class="{{if .SupervisorConnected}}connected{{else}}disconnected{{end}}">
+              {{if .SupervisorConnected}}Connected{{else}}Disconnected{{end}}
+            </td>
+          </tr>
+          {{if .SupervisorConnected}}
+          <tr>
+            <td>
+              Supported:
+            </td>
+            <td class="{{if .Supported}}connected{{else if .SupervisorResponse}}disconnected{{end}}">
+              {{if .Supported}}Supported{{else if not .SupervisorResponse}}Processing...{{else}}Unsupported
+                {{range $reason := .Unsupported}}
+                  <li class="reason"><a href="https://www.vioneta.io" target="_blank">{{$reason}}</a></li>
+                {{end}}
+              {{end}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Healthy:
+            </td>
+            <td class="{{if .Healthy}}connected{{else if .SupervisorResponse}}disconnected{{end}}">
+              {{if .Healthy}}Healthy{{else if not .SupervisorResponse}}Processing...{{else}}Unhealthy
+                {{range $reason := .Unhealthy}}
+                  <li class="reason"><a href="https://www.vioneta.io" target="_blank">{{$reason}}</a></li>
+                {{end}}
+              {{end}}
+            </td>
+          </tr>
+          {{end}}
+        </table>
+        {{ if .Logs }}
+          <pre class="log">{{.Logs}}</pre>
+        {{ end }}
+      </div>
+
+    <script src="/static/tsparticles.min.js"></script>
+    <script src="/static/scripts.js"></script>
+  </body>
+</html>

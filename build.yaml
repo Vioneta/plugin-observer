@@ -1,0 +1,18 @@
+image: vioneta/{arch}-hassio-observer
+shadow_repository: ghcr.io/vioneta
+build_from:
+  aarch64: scratch
+  armhf: scratch
+  armv7: scratch
+  amd64: scratch
+  i386: scratch
+
+labels:
+  io.hass.type: observer
+  org.opencontainers.image.title: VionetaOS Observer Plugin
+  org.opencontainers.image.description: VionetaOS Supervisor plugin monitor Supervisor
+  org.opencontainers.image.source: https://github.com/Vioneta/plugin-observer
+  org.opencontainers.image.authors: The VionetaOS Authors
+  org.opencontainers.image.url: https://www.vioneta.io/
+  org.opencontainers.image.documentation: https://www.vioneta.io/docs/
+  org.opencontainers.image.licenses: Apache License 2.0
